@@ -4,7 +4,7 @@ var querystring = require('querystring');
 var MailParser = require("mailparser").MailParser;
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.post('/', function(req, res) {
     var chunks = [];
     req.on('data', chunks.push.bind(chunks));
     req.on('end', function() {
