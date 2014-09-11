@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var MailParser = require("mailparser").MailParser;
+var sort = require('../lib/sorting');
+var pick = require('../lib/picking');
 
 /* GET home page. */
 router.post('/', function(req, res) {
@@ -22,7 +24,7 @@ router.post('/', function(req, res) {
             textBody: mail_object.text,
             htmlBody: mail_object.html
         }
-        console.log(mail);
+        sort.sorting(mail, pick.picking);
         res.writeHead(200, {'content-type': 'text/plain'});
         res.end();
     });
