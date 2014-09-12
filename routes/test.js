@@ -36,4 +36,34 @@ router.get('/amazon', function(req, res) {
     });
 });
 
+router.get('/amazonde', function(req, res) {
+    fs.readFile(__dirname + '/../test/fixed/amazon.de.html', function (err, data) {
+        if (err) throw err;
+        var testMail = {};
+        testMail.htmlBody = S(data.toString('utf8', 0, data.length)).replaceAll('\n', '').replaceAll('&nbsp;', '').s;
+        testMail.subject = 'Fw:Ihre Amazon.de Bestellung von "Aptamil Kindermilch 2 plus...".';
+        sort.sorting(testMail, pick.picking, res);
+    });
+});
+
+router.get('/amazonjp', function(req, res) {
+    fs.readFile(__dirname + '/../test/fixed/amazon.jp2.html', function (err, data) {
+        if (err) throw err;
+        var testMail = {};
+        testMail.htmlBody = S(data.toString('utf8', 0, data.length)).replaceAll('\n', '').replaceAll('&nbsp;', '').s;
+        testMail.subject = 'FW: Amazon.co.jp ご注文の確認 「ロリエ Speed+ スリムガード ...」3点とその他6点';
+        sort.sorting(testMail, pick.picking, res);
+    });
+});
+
+router.get('/drugstore', function(req, res) {
+    fs.readFile(__dirname + '/../test/fixed/drugstore2.html', function (err, data) {
+        if (err) throw err;
+        var testMail = {};
+        testMail.htmlBody = S(data.toString('utf8', 0, data.length)).replaceAll('\n', '').replaceAll('&nbsp;', '').s;
+        testMail.subject = 'Fw:Your drugstore.com Order 03343223216100 Confirmation';
+        sort.sorting(testMail, pick.picking, res);
+    });
+});
+
 module.exports = router;
