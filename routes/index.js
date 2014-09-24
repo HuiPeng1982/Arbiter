@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 var MailParser = require("mailparser").MailParser;
 var sort = require('../lib/sorting');
 var pick = require('../lib/picking');
@@ -24,9 +25,18 @@ router.post('/', function(req, res) {
             textBody: mail_object.text,
             htmlBody: mail_object.html
         }
-        sort.sorting(mail, pick.picking);
-        res.writeHead(200, {'content-type': 'text/plain'});
-        res.end();
+        var result = sort.sorting(mail, pick.picking);
+
+        request.post(
+            'http://127.0.0.1:3000/imports/order',
+            { result: result },
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    res.writeHead(200, {'content-type': 'text/plain'});
+                    res.end();
+                }
+            }
+        );
     });
     mailparser.write(req.param('message'));
     mailparser.end();
