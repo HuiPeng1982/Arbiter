@@ -3,8 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "dev-start": "NODE_ENV=development DEBUG='Arbiter' ./node_modules/.bin/nodemon ./bin/www",
-        "start": "node ./bin/www"
+        "start": "NODE_ENV=development DEBUG='Arbiter' ./node_modules/.bin/nodemon ./bin/www"
     },
     "dependencies": {
         "express": "~4.8.6",
