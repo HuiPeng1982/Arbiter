@@ -47,7 +47,7 @@ router.get('/gymboree-ship', function(req, res) {
 });
 
 router.get('/amazon', function(req, res) {
-    fs.readFile(__dirname + '/../test/fixed/amazon.html', function (err, data) {
+    fs.readFile(__dirname + '/../test/fixed/amazon1.html', function (err, data) {
         if (err) throw err;
         var testMail = {};
         testMail.htmlBody = S(data.toString('utf8', 0, data.length)).replaceAll('\n', '').replaceAll('&nbsp;', '').s;
@@ -57,7 +57,7 @@ router.get('/amazon', function(req, res) {
 });
 
 router.get('/amazon-ship', function(req, res) {
-    fs.readFile(__dirname + '/../test/fixed/amazon-ship.html', function (err, data) {
+    fs.readFile(__dirname + '/../test/fixed/amazon1-ship.html', function (err, data) {
         if (err) throw err;
         var testMail = {};
         testMail.htmlBody = S(data.toString('utf8', 0, data.length)).replaceAll('\n', '').replaceAll('&nbsp;', '').s;
